@@ -3,15 +3,13 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
   Title,
   Tooltip,
   Legend,
   BarElement,
 } from "chart.js";
 import { useEffect, useState } from "react";
-import { Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 // ChartJS.register(
 //   CategoryScale,
