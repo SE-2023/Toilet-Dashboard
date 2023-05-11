@@ -11,7 +11,7 @@ const TopReview = () => {
         data: { data },
       } = await axios.get("/dashboard/top-review");
 
-      console.log(data);
+      console.log("top review", data);
 
       setData(data);
     };
@@ -20,7 +20,7 @@ const TopReview = () => {
   }, []);
 
   return (
-    <div className="mt-5 w-100 p-5">
+    <div className="mt-2 w-100">
       <div className="text-xl font-bold">รีวิวจากผู้ใช้งานล่าสุด</div>
       <div className="py-2">
         {data.map((item: any, index: number) => {
@@ -31,23 +31,25 @@ const TopReview = () => {
   );
 };
 
-const Rate = (props: any) => {
+const Item = (item: any) => {
   return (
-    <div>
-      {Array(props.count).map(() => {
-        return <AiTwotoneStar />;
-      })}
+    <div className="flex border-[1px] border-slate-300 rounded-lg p-4 my-3">
+      {/* <div className="pr-4">{item.no + 1}.</div> */}
+      <div>
+        <Rate rate={item.rate} />
+        <div>{item.comment}</div>
+      </div>
     </div>
   );
 };
 
-const Item = (item: any) => {
+const Rate = (props: any) => {
   return (
-    <div className="flex border-[1px] border-slate-300 rounded p-4 my-3">
-      <div className="pr-4">{item.no + 1}.</div>
-      <div>{item.comment}</div>
-      <div>
-        <Rate count={item.rate} />
+    <div>
+      <div className="flex">
+        {Array.from({ length: props.rate }).map((_, index) => {
+          return <AiTwotoneStar key={index} color="#FFC000" size={20} />;
+        })}
       </div>
     </div>
   );

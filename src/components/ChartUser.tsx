@@ -8,15 +8,25 @@ import {
   Title,
   Tooltip,
   Legend,
+  BarElement,
 } from "chart.js";
 import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
+
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend
+// );
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -25,13 +35,13 @@ ChartJS.register(
 export const options = {
   responsive: true,
   plugins: {
-    legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "กราฟแสดงจำนวนการเพิ่มห้องน้ำในแต่ละวัน",
-    },
+    // legend: {
+    //   position: "top" as const,
+    // },
+    // title: {
+    //   display: true,
+    //   text: "กราฟแสดงจำนวนการเพิ่มห้องน้ำในแต่ละวัน",
+    // },
   },
   scales: {
     y: {
@@ -50,7 +60,7 @@ export const options = {
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();
 
-const dayOfMonth = new Date(currentYear, currentMonth, 0).getDate();
+const dayOfMonth = new Date(currentYear, currentMonth, 0).getDate() + 1;
 
 const labels = Array.from({ length: dayOfMonth }, (_, i) => i + 1);
 
@@ -64,7 +74,7 @@ const ChartUser = () => {
     labels,
     datasets: [
       {
-        label: "จำนวนห้องน้ำ",
+        label: "จำนวนการเพิ่มห้องน้ำ",
         data: data,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
@@ -107,8 +117,11 @@ const ChartUser = () => {
   }, []);
 
   return (
-    <div className="col-span-3 pr-10">
-      <Line options={options} data={chartData} />
+    <div className="pr-10 mt-5">
+      <div className="text-xl font-bold">
+        กราฟแสดงจำนวนการโพสต์ในแต่ละวัน ของเดือนพฤษภาคม
+      </div>
+      <Bar options={options} data={chartData} height={100} />
     </div>
   );
 };

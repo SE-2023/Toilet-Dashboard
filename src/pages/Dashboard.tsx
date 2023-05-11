@@ -4,10 +4,12 @@ import TopReview from "../components/TopReview";
 
 const Dashboard = () => {
   return (
-    <div>
-      <SummaryStatus />
-      <div className="grid grid-cols-4">
+    <div className="grid grid-cols-4">
+      <div className="col-span-3">
+        <SummaryStatus />
         <ChartUser />
+      </div>
+      <div>
         <TopReview />
       </div>
     </div>

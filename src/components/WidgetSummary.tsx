@@ -11,7 +11,7 @@ const WidgetSummary: FC<IWidget> = ({ title, count, className }) => {
     <div
       className={[
         className,
-        "min-w-[250px] mr-3 mb-3 rounded shadow-gray inline-block p-7",
+        "min-w-[300px] mr-3 mb-3 rounded shadow-gray inline-block p-7",
       ].join(" ")}
     >
       <div className="text-white text-lg">{title}</div>
